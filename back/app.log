@@ -1,0 +1,49 @@
+nohup: ignoring input
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.12)
+
+2026-04-15T18:45:46.231Z  INFO 2196 --- [gestionfinancierapersonal] [           main] f.g.GestionfinancierapersonalApplication : Starting GestionfinancierapersonalApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 2196 (/home/ubuntu/GestionFinancieraPersonal/target/gestionfinancierapersonal-0.0.1-SNAPSHOT.jar started by ubuntu in /home/ubuntu/GestionFinancieraPersonal)
+2026-04-15T18:45:46.240Z  INFO 2196 --- [gestionfinancierapersonal] [           main] f.g.GestionfinancierapersonalApplication : No active profile set, falling back to 1 default profile: "default"
+2026-04-15T18:45:47.763Z  INFO 2196 --- [gestionfinancierapersonal] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-15T18:45:47.861Z  INFO 2196 --- [gestionfinancierapersonal] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 1 JPA repository interface.
+2026-04-15T18:45:48.671Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-15T18:45:48.690Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-15T18:45:48.691Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-04-15T18:45:48.726Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-15T18:45:48.728Z  INFO 2196 --- [gestionfinancierapersonal] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2327 ms
+2026-04-15T18:45:48.998Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-15T18:45:49.082Z  INFO 2196 --- [gestionfinancierapersonal] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.44.Final
+2026-04-15T18:45:49.132Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-15T18:45:49.608Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-15T18:45:49.656Z  INFO 2196 --- [gestionfinancierapersonal] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-15T18:45:50.379Z  INFO 2196 --- [gestionfinancierapersonal] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@704d3b00
+2026-04-15T18:45:50.382Z  INFO 2196 --- [gestionfinancierapersonal] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-15T18:45:50.432Z  WARN 2196 --- [gestionfinancierapersonal] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-15T18:45:50.476Z  INFO 2196 --- [gestionfinancierapersonal] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-15T18:45:51.940Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-15T18:45:52.181Z  INFO 2196 --- [gestionfinancierapersonal] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-15T18:45:52.905Z  WARN 2196 --- [gestionfinancierapersonal] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-15T18:45:53.541Z  INFO 2196 --- [gestionfinancierapersonal] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-15T18:45:53.560Z  INFO 2196 --- [gestionfinancierapersonal] [           main] f.g.GestionfinancierapersonalApplication : Started GestionfinancierapersonalApplication in 8.309 seconds (process running for 9.265)
+2026-04-15T18:48:32.465Z  INFO 2196 --- [gestionfinancierapersonal] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-15T18:48:32.465Z  INFO 2196 --- [gestionfinancierapersonal] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-15T18:48:32.469Z  INFO 2196 --- [gestionfinancierapersonal] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-04-15T18:52:42.719Z  INFO 2196 --- [gestionfinancierapersonal] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-15T18:52:42.725Z  INFO 2196 --- [gestionfinancierapersonal] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-15T18:52:42.729Z  INFO 2196 --- [gestionfinancierapersonal] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-15T18:52:42.734Z  INFO 2196 --- [gestionfinancierapersonal] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-15T18:52:42.747Z  INFO 2196 --- [gestionfinancierapersonal] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

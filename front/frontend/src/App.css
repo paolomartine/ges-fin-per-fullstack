@@ -1,0 +1,726 @@
+/* =============================================
+   BASE / MOBILE-FIRST STYLES
+   ============================================= */
+
+body {
+  margin: 0;
+  background: #e6e6e6;
+  font-family: Arial, sans-serif;
+}
+
+/* ROOT LAYOUT -- flex center for auth pages, normal flow for dashboard */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* =============================================
+   AUTH CARD (Login / Register)
+   ============================================= */
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px 20px;
+  margin: 16px;
+  background: #d3d3d3;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* TITULO */
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* INPUTS */
+input {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #eaeaea;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 2px #5a8dee;
+}
+
+/* BOTON */
+button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  background: #5a8dee;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #3f6fd1;
+}
+
+/* TEXTO */
+p {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #333;
+}
+
+/* LINK */
+.link {
+  color: #5a8dee;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =============================================
+   DASHBOARD
+   ============================================= */
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f3f6fb;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 780px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 20px;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dashboard-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.dashboard-logo-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.dashboard-welcome {
+  margin: 4px 0 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.dashboard-logout-btn {
+  background: transparent;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  padding: 10px 16px;
+  border-radius: 999px;
+  width: auto;
+}
+
+.dashboard-logout-btn:hover {
+  background: #fee2e2;
+}
+
+.dashboard-actions-section {
+  background: transparent;
+  padding: 0;
+}
+
+.dashboard-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-section-title {
+  margin: 0;
+  font-size: 1rem;
+  color: #111827;
+  font-weight: 700;
+}
+
+.dashboard-actions-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dashboard-action-button {
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: auto;
+}
+
+.dashboard-action-button:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.dashboard-account-card {
+  background: #f7f9fc;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-account-label {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.dashboard-account-balance {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.dashboard-movements-section {
+  background: transparent;
+  padding: 0;
+}
+
+.dashboard-movements-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dashboard-movement-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-movement-description {
+  font-size: 0.98rem;
+  color: #111827;
+}
+
+.dashboard-movement-amount {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard-movement-positive {
+  color: #16a34a;
+}
+
+.dashboard-movement-negative {
+  color: #dc2626;
+}
+
+.dashboard-empty-state {
+  margin: 20px 0 0;
+  color: #6b7280;
+  text-align: center;
+  padding: 32px 0;
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.dashboard-new-movement-button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-new-movement-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.dashboard-movement-type {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-left: 8px;
+}
+
+/* =============================================
+   ACCOUNTS
+   ============================================= */
+.accounts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.account-card {
+  background: #f7f9fc;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.account-name {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.account-balance {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.empty-state {
+  margin: 20px 0 0;
+  color: #6b7280;
+  text-align: center;
+  padding: 32px 0;
+}
+
+/* =============================================
+   ADD ACCOUNT FORM
+   ============================================= */
+.add-account-form {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-button {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.cancel-button:hover {
+  background: #f3f4f6;
+}
+
+/* =============================================
+   TRANSACTION MODAL
+   ============================================= */
+.transaction-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.transaction-modal {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.transaction-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction-modal-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #111827;
+  font-weight: 700;
+}
+
+.transaction-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.transaction-modal-close:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.transaction-form {
+  padding: 24px;
+}
+
+.transaction-form .form-group {
+  margin-bottom: 18px;
+}
+
+.transaction-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.transaction-form input,
+.transaction-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  font-family: inherit;
+}
+
+.transaction-form input:disabled,
+.transaction-form select:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.transaction-form select {
+  cursor: pointer;
+}
+
+.transaction-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 12px;
+}
+
+.transaction-modal-actions .cancel-button {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.transaction-modal-actions .cancel-button:hover {
+  background: #f3f4f6;
+}
+
+.transaction-modal-actions .submit-button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.transaction-modal-actions .submit-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.transaction-modal-actions .submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* SELECT GLOBAL */
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.select-error,
+.input-error {
+  border-color: #dc2626 !important;
+}
+
+.select-error:focus,
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* =============================================
+   TABLET BREAKPOINT (>= 600px)
+   ============================================= */
+@media (min-width: 600px) {
+  /* Auth card gets more breathing room */
+  .container {
+    max-width: 420px;
+    padding: 32px 28px;
+  }
+
+  /* Dashboard card wider padding */
+  .dashboard-card {
+    padding: 28px;
+    border-radius: 24px;
+    margin: 24px 0;
+    gap: 24px;
+  }
+
+  .dashboard-page {
+    padding: 24px;
+  }
+
+  /* Account balance font can be bigger */
+  .account-balance,
+  .dashboard-account-balance {
+    font-size: 1.8rem;
+  }
+
+  .account-card,
+  .dashboard-account-card {
+    padding: 24px;
+  }
+}
+
+/* =============================================
+   DESKTOP BREAKPOINT (>= 960px)
+   ============================================= */
+@media (min-width: 960px) {
+  /* Auth card: comfortable desktop sizing */
+  .container {
+    max-width: 440px;
+    padding: 40px 36px;
+    border-radius: 20px;
+  }
+
+  /* Dashboard expands to use available desktop space */
+  .dashboard-card {
+    max-width: 960px;
+    padding: 36px;
+    gap: 28px;
+  }
+
+  .dashboard-page {
+    padding: 32px;
+  }
+
+  /* Accounts can sit side by side on desktop */
+  .accounts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* Add account form: two-column layout for fields */
+  .add-account-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+    align-items: start;
+  }
+
+  .add-account-form .form-group {
+    margin-bottom: 16px;
+  }
+
+  .add-account-form .form-actions {
+    grid-column: 1 / -1;
+  }
+
+  /* Movement items have more room */
+  .dashboard-movement-item {
+    padding: 20px 0;
+  }
+
+  .dashboard-movement-description {
+    font-size: 1rem;
+  }
+}
+
+/* =============================================
+   WIDE DESKTOP BREAKPOINT (>= 1200px)
+   ============================================= */
+@media (min-width: 1200px) {
+  /* Dashboard uses generous width on large screens */
+  .dashboard-card {
+    max-width: 1100px;
+    padding: 40px 48px;
+  }
+
+  .dashboard-page {
+    padding: 40px;
+  }
+
+  /* Accounts grid: 3 columns on wide screens */
+  .accounts-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  /* Transaction modal slightly larger */
+  .transaction-modal {
+    max-width: 560px;
+  }
+}
