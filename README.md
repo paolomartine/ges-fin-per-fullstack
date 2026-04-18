@@ -28,6 +28,7 @@ Permite a los usuarios registrarse, iniciar sesión, administrar cuentas y regis
 
 ## 🌐 URLs de la aplicación
 
+-  Pagina inicio: http://3.223.15.88
 - Frontend: http://3.223.15.88:5173  
 - Backend: http://3.223.15.88:8080  
 
