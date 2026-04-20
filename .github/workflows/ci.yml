@@ -19,9 +19,9 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Build Backend
+    - name: Build Back
       run: |
-        cd backend
+        cd back
         mvn clean package
 
     # -------- FRONTEND --------
@@ -30,9 +30,9 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Build Frontend
+    - name: Build Front
       run: |
-        cd frontend
+        cd front
         npm install
         npm run build
 
