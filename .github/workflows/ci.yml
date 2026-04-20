@@ -1,61 +1,49 @@
-name: CI Fullstack App
+name: CI Básico + Deploy S3
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-
-  backend:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v3
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
+    # -------- BACKEND --------
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
 
-      - name: Build backend
-        run: |
-          cd back
-          ./mvnw clean install
+    - name: Build Backend
+      run: |
+        cd backend
+        mvn clean package
 
-  frontend:
-    runs-on: ubuntu-latest
+    # -------- FRONTEND --------
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Build Frontend
+      run: |
+        cd frontend
+        npm install
+        npm run build
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+    # -------- AWS --------
+    - name: Configurar AWS
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Install dependencies
-        run: |
-          cd front/frontend
-          npm install
-
-      - name: Build frontend
-        run: |
-          cd front/frontend
-          npm run build
-              # -------- CONFIGURAR AWS --------
-      - name: Configurar AWS
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-    # -------- DEPLOY A S3 --------
+    # -------- DEPLOY --------
     - name: Subir a S3
       run: |
         aws s3 sync frontend/dist s3://${{ secrets.S3_BUCKET }} --delete
