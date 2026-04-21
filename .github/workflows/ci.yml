@@ -1,5 +1,5 @@
 
-name: CI Fullstack App
+name: CI/CD Fullstack PRO
 
 on:
   push:
@@ -22,14 +22,28 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build backend
+      - name: Build + Test Backend
         run: |
           cd back
-          ./mvnw clean install
+          ./mvnw clean verify
+
+      - name: Generar cobertura JaCoCo
+        run: |
+          cd back
+          ./mvnw jacoco:report
+
+      - name: SonarCloud Backend
+        run: |
+          cd back
+          ./mvnw sonar:sonar \
+          -Dsonar.projectKey=TU_PROJECT_KEY \
+          -Dsonar.organization=TU_ORG
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   frontend:
     runs-on: ubuntu-latest
-    needs: backend   # 👈 primero backend
+    needs: backend
 
     steps:
       - name: Checkout code
@@ -45,10 +59,22 @@ jobs:
           cd front/frontend
           npm install
 
+      - name: Test frontend (coverage)
+        run: |
+          cd front/frontend
+          npm test -- --coverage
+
       - name: Build frontend
         run: |
           cd front/frontend
           npm run build
+
+      - name: SonarCloud Frontend
+        run: |
+          cd front/frontend
+          npx sonar-scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # -------- AWS --------
       - name: Configurar AWS
@@ -61,4 +87,28 @@ jobs:
       - name: Subir a S3
         working-directory: front/frontend
         run: |
-            aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete
+          aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete
+
+      - name: Invalidar CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_ID }} \
+          --paths "/*"
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    needs: frontend
+
+    steps:
+      - name: Deploy en EC2
+        uses: appleboy/ssh-action@v0.1.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd personalbudget/back
+            git pull origin main
+            ./mvnw clean package
+            sudo systemctl restart app
+
