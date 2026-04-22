@@ -85,9 +85,21 @@ jobs:
       # ========================
       # DEPLOY FRONTEND
       # ========================
+      - name: Install frontend
+        working-directory: front/frontend
+        run: npm install
+      
+      - name: Run frontend tests
+        working-directory: front/frontend
+        run: npm run test
+      
+      - name: Build frontend
+        working-directory: front/frontend
+        run: npm run build
+      
       - name: Subir a S3
         working-directory: front/frontend
-        run: aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete
+        run: aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete    
 
       - name: Invalidar CloudFront
         run: |
