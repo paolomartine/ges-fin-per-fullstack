@@ -47,7 +47,7 @@ jobs:
 
       - name: Test Frontend (coverage)
         working-directory: front/frontend
-        run: npm test -- --coverage
+        run: npm run test
 
       - name: Build Frontend
         working-directory: front/frontend
