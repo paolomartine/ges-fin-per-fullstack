@@ -1,4 +1,3 @@
-
 name: CI/CD Fullstack PRO
 
 on:
@@ -8,22 +7,21 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build-test-analyze:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       # ========================
-      # BACKEND
+      # BACKEND (Spring Boot)
       # ========================
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build + Test Backend
         working-directory: back
@@ -34,16 +32,19 @@ jobs:
         run: ./mvnw jacoco:report
 
       # ========================
-      # FRONTEND
+      # FRONTEND (React/Vite)
       # ========================
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: front/frontend/package-lock.json
 
       - name: Install Frontend
         working-directory: front/frontend
-        run: npm install
+        # Usamos legacy-peer-deps para ignorar el conflicto de Vitest 4.1.5 vs 1.6.1
+        run: npm install --legacy-peer-deps
 
       - name: Test Frontend (coverage)
         working-directory: front/frontend
@@ -63,17 +64,31 @@ jobs:
           -Dsonar.organization=TU_ORG
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
     needs: build-test-analyze
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # No volvemos a testear, solo preparamos el artefacto para subir a S3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Build Frontend
+        working-directory: front/frontend
+        run: |
+          npm install --legacy-peer-deps
+          npm run build
+
       # ========================
-      # AWS CONFIG
+      # AWS DEPLOY (S3 + CloudFront)
       # ========================
       - name: Configurar AWS
         uses: aws-actions/configure-aws-credentials@v2
@@ -82,24 +97,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # ========================
-      # DEPLOY FRONTEND
-      # ========================
-      - name: Install frontend
-        working-directory: front/frontend
-        run: npm install
-      
-      - name: Run frontend tests
-        working-directory: front/frontend
-        run: npm run test
-      
-      - name: Build frontend
-        working-directory: front/frontend
-        run: npm run build
-      
       - name: Subir a S3
         working-directory: front/frontend
-        run: aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete    
+        run: aws s3 sync dist s3://${{ secrets.S3_BUCKET }} --delete      
 
       - name: Invalidar CloudFront
         run: |
@@ -108,7 +108,7 @@ jobs:
           --paths "/*"
 
       # ========================
-      # DEPLOY BACKEND
+      # DEPLOY BACKEND (EC2)
       # ========================
       - name: Deploy Backend EC2
         uses: appleboy/ssh-action@v0.1.0
@@ -119,5 +119,6 @@ jobs:
           script: |
             cd ges-fin-per-fullstack/back
             git pull origin main
-            ./mvnw clean package
+            chmod +x mvnw
+            ./mvnw clean package -DskipTests
             sudo systemctl restart app
