@@ -61,7 +61,10 @@ jobs:
         run: |
           mvn -f back/pom.xml sonar:sonar \
           -Dsonar.projectKey=TU_PROJECT_KEY \
-          -Dsonar.organization=TU_ORG
+          -Dsonar.organization=TU_ORG \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.java.binaries=back/target/classes \
+          -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
