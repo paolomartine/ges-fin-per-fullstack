@@ -60,8 +60,8 @@ jobs:
       - name: Sonar Scan
         run: |
           mvn -f back/pom.xml sonar:sonar \
-          -Dsonar.projectKey=TU_PROJECT_KEY \
-          -Dsonar.organization=TU_ORG \
+          -Dsonar.projectKey= paolomartine_ges-fin-per-fullstack \
+          -Dsonar.organization= paolomartine \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.java.binaries=back/target/classes \
           -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
