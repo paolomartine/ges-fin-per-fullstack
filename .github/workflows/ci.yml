@@ -63,8 +63,8 @@ jobs:
           -Dsonar.projectKey=paolomartine_ges-fin-per-fullstack \
           -Dsonar.organization=paolomartine \
           -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.java.binaries=back/target/classes \
-          -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml \
+          -Dsonar.java.binaries=target/classes \
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
           -Dsonar.qualitygate.wait=false
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
